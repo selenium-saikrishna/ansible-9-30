@@ -1,0 +1,24 @@
+
+
+- name: Installing git and maven
+  hosts: 192.168.60.22
+  tasks:
+   - name: Installing maven
+     apt: 
+      name: maven
+      state: present
+   - name: Installing git
+     apt:
+      name: git
+      state: present
+- name: Installing tomcat
+  hosts: servers
+  tasks:
+   - name: Install tomcat7
+     apt: 
+      name: tomcat7
+      state: present
+   - name: Install tomcat7-admin
+     apt:
+      name: tomcat7-admin
+      state: present

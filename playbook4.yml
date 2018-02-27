@@ -1,0 +1,18 @@
+---
+- name: Sending files form one manged node to another
+  hosts: 192.168.60.22
+  tasks:
+   - name: Fetch the file from1st managed host
+     fetch:
+      src: file1
+      dest: /home/vagrant
+- name: Send file from controller to 2nd managed host
+  hosts: 192.168.60.23
+  tasks:
+   - name: Copy file
+     copy:
+      src: /home/vagrant/192.168.60.22/file1
+      dest: /home/vagrant 
+
+
+...

@@ -1,0 +1,21 @@
+---
+- name: Installing/uninstalling  packages
+  hosts: 192.168.60.22
+  tasks:
+   - name: Installing tree
+     apt:
+      name: tree
+      state: present
+   - name: Uninstalling maven
+     apt:
+      name: maven
+      state: absent
+   - name: Installing git
+     apt:
+      name: git
+      state: present
+
+
+
+
+...
