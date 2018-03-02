@@ -1,8 +1,13 @@
 
 
 - name: Installing git and maven
-  hosts: 192.168.60.22
+  hosts: devserver
   tasks:
+   - name: Installing jdk
+     apt:
+      name: default-jdk
+      state: present
+      update_cache: yes
    - name: Installing maven
      apt: 
       name: maven
@@ -22,3 +27,56 @@
      apt:
       name: tomcat7-admin
       state: present
+- name: Continuous download and build
+  hosts: devserver
+  tasks:
+   - name: Continuous download
+     git:
+      clone: yes
+      repo: "https://github.com/selenium-saikrishna/maven.git"
+      dest: /home/vagrant/git
+   - name: Continuous Build
+     shell: cd /home/vagrant/git;mvn package      
+- name: Continuous deployment and testing
+  hosts: devserver
+  tasks:
+   - name: Fetch the artifact from dev serve
+     fetch:
+      src: /home/vagrant/git/webapp/target/webapp.war
+      dest: /home/vagrant
+- name: Copying artifacts
+  hosts: 10.10.11.12
+  tasks:   
+   - name: Copy the artifact into QA server
+     copy:
+      src: /home/vagrant/10.10.11.11/home/vagrant/git/webapp/target/webapp.war
+      dest: /var/lib/tomcat7/webapps/qaenv.war
+- name: Download the testing code
+  hosts: devserver
+  tasks:
+   - name: Git testing code download
+     git:
+      clone: yes
+      repo: https://github.com/selenium-saikrishna/testing.git
+      dest: /home/vagrant/testing-git 
+   - name: Continuous Testing
+     shell: java -jar /home/vagrant/testing-git/testing.jar  
+- name: Continuous Delivery
+  hosts: 10.10.11.13
+  tasks:
+   - name: Deliver the artifact into prod server
+     copy:
+      src: /home/vagrant/10.10.11.11/home/vagrant/git/webapp/target/webapp.war
+      dest: /var/lib/tomcat7/webapps/prodenv.war
+
+
+
+
+
+
+
+
+
+
+
+
