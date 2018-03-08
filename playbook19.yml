@@ -1,0 +1,26 @@
+---
+- name: Tagging of modules
+  hosts: 192.168.60.23
+  tasks:
+   - name: Install tree
+     apt:
+      name: tree
+      state: latest
+     tags:
+      tree_installation
+   - name: Copy passwd
+     copy:
+      src: /etc/passwd
+      dest: /home/vagrant
+     tags:
+      copy_passwd
+   - name: User creation
+     user:
+      name: Ravi
+      password: intelliq
+
+
+
+
+
+...

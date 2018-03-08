@@ -1,0 +1,10 @@
+---
+- name: Configuring apache2
+  hosts: 192.168.60.23
+  tasks:
+   - include: "{{item}}"
+     with_items:
+      - playbook14.yml
+      - playbook15.yml
+      - playbook16.yml
+      - playbook17.yml

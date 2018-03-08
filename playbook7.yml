@@ -1,0 +1,19 @@
+---
+- name: Creating dirs and files
+  hosts: all
+  tasks:
+   - name: Creating dir/files
+     file:
+      name: "{{item.a}}"
+      state: "{{item.b}}"
+      owner: "{{item.c}}"
+      group: "{{item.d}}"
+      mode: "{{item.e}}"
+     with_items:
+      - {a: folder1,b: directory,c: root,d: intelliq,e: 777}
+      - {a: folder1/file1,b: touch,c: vagrant,d: root,e: 000}
+
+
+
+
+...

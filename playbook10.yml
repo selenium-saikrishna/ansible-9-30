@@ -1,0 +1,11 @@
+---
+- name: Creating user accounts
+  hosts: webserver
+  tasks:
+   - name: Managing user accounts
+     user:
+      name: "{{a}}"
+      password: "{{b}}"
+      home: "{{c}}"
+      shell: "{{d}}"
+...

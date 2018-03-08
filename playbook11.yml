@@ -1,0 +1,8 @@
+---
+- name: UnInstall git
+  hosts: 192.168.60.24
+  tasks:
+   - apt:
+      name: "{{a}}"
+      state: "{{b}}"
+      update_cache: "{{c}}"

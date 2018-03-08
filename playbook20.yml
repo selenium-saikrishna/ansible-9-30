@@ -1,0 +1,15 @@
+---
+- name: Debug module example
+  hosts: all
+  tasks: 
+   - name: creating files
+     file:
+      name: file456
+      state: touch
+     register: results
+   - name: Display the output
+     debug:
+      var: results
+
+
+...

@@ -1,0 +1,9 @@
+
+
+
+---
+- name: Calling other playbooks
+  hosts: all
+  tasks:
+   - include:
+      playbook12.yml

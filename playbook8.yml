@@ -1,0 +1,15 @@
+---
+- name: Global scope variables
+  hosts: 192.168.60.22
+  tasks:
+   - name: Install pacakage
+     apt:
+      name: "{{a}}"
+      state: "{{b}}"
+      update_cache: "{{c}}"
+
+  
+
+
+
+...

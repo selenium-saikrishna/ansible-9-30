@@ -1,0 +1,16 @@
+---
+- name: tree
+  hosts: 192.168.60.55
+  vars:
+   - a: 10
+  tasks:
+   - name: unInstalling tree
+     apt:
+      name: tree
+      state: absent
+     when:
+      a == 10
+
+
+
+...

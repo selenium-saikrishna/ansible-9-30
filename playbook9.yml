@@ -1,0 +1,19 @@
+---
+- name: Installing packages
+  hosts: 192.168.60.22
+  vars:
+   - a: apache2
+   - b: present
+   - c: no  
+  tasks:
+   - name: Installing/uninstalling 
+     apt:
+      name: "{{a}}"
+      state: "{{b}}"
+      update_cache: "{{c}}"
+  
+
+
+
+
+...

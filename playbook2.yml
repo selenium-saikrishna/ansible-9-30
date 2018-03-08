@@ -1,6 +1,8 @@
 ---
 - name: Installing/uninstalling  packages
   hosts: 192.168.60.22
+  become: yes
+  gather_facts: false
   tasks:
    - name: Installing tree
      apt:

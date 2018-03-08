@@ -1,0 +1,11 @@
+---
+
+- name: Create file/dir
+  file:
+   name: /home/vagrant/file190
+   state: touch
+   mode: 666
+   owner: root
+
+
+...
